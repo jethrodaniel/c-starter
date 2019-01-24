@@ -10,3 +10,4 @@ Feature: Main
     Life is a garden - do you dig it? (y/n) :
     This guy digs it!
     """
+    And the exit status should be 0
