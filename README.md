@@ -2,6 +2,12 @@
 
 This a basic starter template for c code.
 
+## Installation
+
+```
+git clone --recurse-submodules https://github.com/jethrodaniel/c-starter.git your-project-name
+```
+
 ## Makefile
 
 ```
@@ -56,3 +62,7 @@ Two kinds of tests are used:
   - CLI tests (in Gherkin) with [Aruba/Cucumber](https://github.com/cucumber/aruba)
     - Requires [ruby](https://www.ruby-lang.org/en/)
     - Aruba [documentation](https://app.cucumber.pro/projects/aruba/documents/branch/master/)
+
+## TODO
+
+- [ ] Automate renaming `dig.{c,h}` with a ruby setup script
