@@ -21,7 +21,9 @@ VFLAGS += --tool=memcheck
 VFLAGS += --leak-check=full
 VFLAGS += --error-exitcode=1
 
-SOURCE := $(shell find ./src -name '*.c')
+SOURCE := $(shell find ./src -name '*.c' -not -name 'main.c')
+MAIN := 'src/main.c'
+UNITY := $(shell find ./test/Unity/src -name '*.c')
 TESTS := $(shell find ./test -name '*.c' -not -path '*Unity*')
 
 .PHONY: usage
@@ -39,15 +41,19 @@ usage:
 
 .PHONY: memcheck
 memcheck: tests.out
+ifeq ( , $(shell which valgrind))
+	$(error Please install valgrind to run this command)
+else
 	@valgrind $(VFLAGS) ./tests.out
 	@echo "Memory check passed"
+endif
 .PHONY: m
 m: memcheck
 
 .PHONY: build
 build: $(SOURCE)
-	@echo "Compiling source code into `./$(PROGRAM_NAME)' ..."
-	$(CC) $(CC_FLAGS) $(SOURCE) -o $(PROGRAM_NAME)
+	@echo "Compiling source code into ./$(PROGRAM_NAME) ..."
+	$(CC) $(CC_FLAGS) $(SOURCE) $(MAIN) -o $(PROGRAM_NAME)
 .PHONY: b
 b: build
 
@@ -74,7 +80,7 @@ t: test
 
 tests.out: $(TESTS)
 	@echo "Compiling tests into ./tests.out"
-	@$(CC) $(CFLAGS) $(TESTS) -o tests.out
+	@$(CC) $(CFLAGS) $(TESTS) $(SOURCE) $(UNITY) -o tests.out
 
 .PHONY: tree
 tree:
