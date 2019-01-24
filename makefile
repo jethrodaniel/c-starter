@@ -62,7 +62,7 @@ b: build
 .PHONY: clean
 clean:
 	@echo "Removing all generated files ..."
-	rm -rf $(PROGRAM_NAME) *.o *.out *.out.dSYM
+	rm -rf $(PROGRAM_NAME) *.o *.out *.out.dSYM tmp*
 .PHONY: cl
 cl: clean
 .PHONY: purge

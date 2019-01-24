@@ -26,17 +26,27 @@ COMMANDS
 $ make tr
 tree -a -I 'Unity|.git'
 .
+├── features
+│   ├── main.feature
+│   └── support
+│       ├── aruba.rb
+│       └── env.rb
+├── Gemfile
+├── Gemfile.lock
 ├── .gitignore
 ├── .gitmodules
 ├── makefile
 ├── README.md
+├── .ruby-version
 ├── src
 │   ├── dig.c
 │   ├── dig.h
 │   ├── main.c
 │   └── main.h
 └── test
-    └── test_main.c
+    └── test_dig.c
+
+    4 directories, 15 files
 ```
 
 ## Tests
@@ -45,4 +55,4 @@ Two kinds of tests are used:
   - Unit tests (in C) with [Unity](https://github.com/ThrowTheSwitch/Unity)
   - CLI tests (in Gherkin) with [Aruba/Cucumber](https://github.com/cucumber/aruba)
     - Requires [ruby](https://www.ruby-lang.org/en/)
-    - Aruba [documentation](https://github.com/cucumber/aruba)
+    - Aruba [documentation](https://app.cucumber.pro/projects/aruba/documents/branch/master/)
