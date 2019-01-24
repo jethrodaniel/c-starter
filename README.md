@@ -65,4 +65,5 @@ Two kinds of tests are used:
 
 ## TODO
 
-- [ ] Automate renaming `dig.{c,h}` with a ruby setup script
+- [ ] Automate renaming `dig.{c,h}` with a setup script
+- [ ] Add more example tests
