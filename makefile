@@ -32,7 +32,9 @@ usage:
 	@echo "  make COMMAND"
 	@echo "\nCOMMANDS\n"
 	@echo "  b|uild      Compiles the source code into an executable"
-	@echo "  c|lean      Removes generated files that are modified during builds"
+	@echo "  cl|ean      Removes generated files that are modified during builds"
+	@echo "  c|ucumber   Runs the aruba/cucumber tests"
+	@echo "  p|urge      Alias to 'clean'"
 	@echo "  r|un        Runs 'build', then runs the resulting executable"
 	@echo "  t|est       Runs the tests"
 	@echo "  tr|ee       Outputs the project directory using 'tree'"
@@ -61,8 +63,12 @@ b: build
 clean:
 	@echo "Removing all generated files ..."
 	rm -rf $(PROGRAM_NAME) *.o *.out *.out.dSYM
-.PHONY: c
-c: clean
+.PHONY: cl
+cl: clean
+.PHONY: purge
+purge: clean
+.PHONY: p
+p: clean
 
 .PHONY: run
 run: clean build
@@ -91,3 +97,25 @@ else
 endif
 PHONY: tr
 tr: tree
+
+.PHONY: cucumber
+cucumber: build bundle
+	@echo "Running cli tests ..."
+	bundle exec cucumber
+.PHONY: c
+c: cucumber
+
+bundle: gem
+	bundle
+
+gem: ruby
+ifeq ( , $(shell which bundle))
+	gem install bundle
+endif
+
+ruby:
+ifeq ( , $(shell which ruby))
+	$(error Please install Ruby to run the aruba/cucumber tests)
+endif
+
+

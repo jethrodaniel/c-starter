@@ -1,6 +1,24 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 #include "dig.h"
+
+static char choice;
+
+bool prompt_until_yes(char *question)
+{
+  while (choice != 'y') {
+    printf("%s (y/n) :", question);
+    scanf("%s", &choice);
+    printf("\n");
+
+    if (choice == 'y') {
+      printf("This guy digs it!\n");
+      return true;
+    } else
+      printf("Wrong!\n");
+  }
+}
 
 int main(int argc, char **argv)
 {
@@ -8,5 +26,5 @@ int main(int argc, char **argv)
   (void)argc;
   (void)argv;
 
-  printf("%s\n", dig());
+  prompt_until_yes("Life is a garden - do you dig it?");
 }

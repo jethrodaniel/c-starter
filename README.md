@@ -6,14 +6,14 @@ This a basic starter template for c code.
 
 ```
 $ make
-Usage
-
   make COMMAND
 
 COMMANDS
 
   b|uild      Compiles the source code into an executable
-  c|lean      Removes generated files that are modified during builds
+  cl|ean      Removes generated files that are modified during builds
+  c|ucumber   Runs the aruba/cucumber tests
+  p|urge      Alias to 'clean'
   r|un        Runs 'build', then runs the resulting executable
   t|est       Runs the tests
   tr|ee       Outputs the project directory using 'tree'
@@ -38,3 +38,11 @@ tree -a -I 'Unity|.git'
 └── test
     └── test_main.c
 ```
+
+## Tests
+
+Two kinds of tests are used:
+  - Unit tests (in C) with [Unity](https://github.com/ThrowTheSwitch/Unity)
+  - CLI tests (in Gherkin) with [Aruba/Cucumber](https://github.com/cucumber/aruba)
+    - Requires [ruby](https://www.ruby-lang.org/en/)
+    - Aruba [documentation](https://github.com/cucumber/aruba)
