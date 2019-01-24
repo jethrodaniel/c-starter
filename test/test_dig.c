@@ -17,7 +17,7 @@ void test_dig(void)
 
 int main(void)
 {
-   UnityBegin("test/test_main.c");
+   UnityBegin("test/test_dig.c");
 
    RUN_TEST(test_dig);
 
