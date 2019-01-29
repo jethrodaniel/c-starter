@@ -80,13 +80,13 @@ r: run
 .PHONY: test
 test: tests.out
 	@echo "Running the tests ..."
-	@./tests.out
+	./tests.out
 PHONY: t
 t: test
 
 tests.out: $(TESTS)
 	@echo "Compiling tests into ./tests.out"
-	@$(CC) $(CFLAGS) $(TESTS) $(SOURCE) $(UNITY) -o tests.out
+	$(CC) $(CFLAGS) $(TESTS) $(SOURCE) $(UNITY) -o tests.out
 
 .PHONY: tree
 tree:
@@ -117,5 +117,4 @@ ruby:
 ifeq ( , $(shell which ruby))
 	$(error Please install Ruby to run the aruba/cucumber tests)
 endif
-
 
