@@ -2,6 +2,15 @@
 
 This a basic starter template for c code.
 
+It sets up the project with a Makefile, a sensible directory structure, and tests.
+
+While unit tests are in C via [Unity](https://github.com/ThrowTheSwitch/Unity),
+the CLI tests (in Gherkin) via [Aruba/Cucumber](https://github.com/cucumber/aruba)
+require [Ruby](https://www.ruby-lang.org/en/).
+
+If you'd prefer to **not** have any Ruby code in your project, or just lack the
+need for CLI testing, check out the `c-only` branch.
+
 ## Installation
 
 ```
