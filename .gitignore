@@ -1,4 +1,1 @@
-main
-*.o
-*.out
-tmp*
+build

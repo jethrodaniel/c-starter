@@ -1,13 +1,11 @@
 Feature: __program__
 
   Background:
-    When I run `__program__` interactively
+    When I run `build/main`
 
   Scenario: entering input
-    When I type "y"
     Then the output should contain:
     """
-    Life is a garden - do you dig it? (y/n) :
-    This guy digs it!
+    Hello, world!
     """
     And the exit status should be 0
