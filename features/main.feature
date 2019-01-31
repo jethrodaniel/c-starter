@@ -1,7 +1,7 @@
-Feature: Main
+Feature: __program__
 
   Background:
-    When I run `main` interactively
+    When I run `__program__` interactively
 
   Scenario: entering input
     When I type "y"

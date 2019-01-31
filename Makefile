@@ -32,8 +32,8 @@ usage:
 	@echo "  make COMMAND"
 	@echo "\nCOMMANDS\n"
 	@echo "  b|uild      Compiles the source code into an executable"
-	@echo "  cl|ean      Removes generated files that are modified during builds"
-	@echo "  c|ucumber   Runs the aruba/cucumber tests"
+	@echo "  c|lean      Removes generated files that are modified during builds"
+	@echo "  cu|cumber   Runs the aruba/cucumber tests"
 	@echo "  p|urge      Alias to 'clean'"
 	@echo "  r|un        Runs 'build', then runs the resulting executable"
 	@echo "  t|est       Runs the tests"
@@ -63,12 +63,8 @@ b: build
 clean:
 	@echo "Removing all generated files ..."
 	rm -rf $(PROGRAM_NAME) *.o *.out *.out.dSYM tmp*
-.PHONY: cl
-cl: clean
-.PHONY: purge
-purge: clean
-.PHONY: p
-p: clean
+.PHONY: c
+c: clean
 
 .PHONY: run
 run: clean build
@@ -98,12 +94,13 @@ endif
 PHONY: tr
 tr: tree
 
+# --- >8 ---
 .PHONY: cucumber
 cucumber: build bundle
 	@echo "Running cli tests ..."
 	bundle exec cucumber
-.PHONY: c
-c: cucumber
+.PHONY: cu
+cu: cucumber
 
 bundle: gem
 	bundle
