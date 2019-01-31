@@ -9,7 +9,7 @@ git clone --recurse-submodules https://github.com/jethrodaniel/c-starter.git you
 
 cd your-project-name
 
-./setup.sh
+./setup
 ```
 
 It's that easy.
