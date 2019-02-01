@@ -39,6 +39,7 @@ end
 desc 'Runs the feature tests'
 task :cucumber => %i[build] do
   sh 'cucumber'
+  sh 'rake clean', :verbose => false
 end
 
 desc 'Runs the unit tests'

@@ -54,35 +54,35 @@ m: memcheck
 
 .PHONY: build
 build: $(SOURCE)
-	@echo "Compiling source code into ./$(PROGRAM_NAME) ..."
-	$(CC) $(CC_FLAGS) $(SOURCE) $(MAIN) -o $(PROGRAM_NAME)
+	@echo "Compiling source code into ./build/$(PROGRAM_NAME) ..."
+	$(CC) $(CC_FLAGS) $(SOURCE) $(MAIN) -o ./build/$(PROGRAM_NAME)
 .PHONY: b
 b: build
 
 .PHONY: clean
 clean:
 	@echo "Removing all generated files ..."
-	rm -rf $(PROGRAM_NAME) *.o *.out *.out.dSYM tmp*
+	rm -rf build/$(PROGRAM_NAME) *.o *.out *.out.dSYM tmp*
 .PHONY: c
 c: clean
 
 .PHONY: run
 run: clean build
 	@echo "Running the program ..."
-	./$(PROGRAM_NAME)
+	./build/$(PROGRAM_NAME)
 .PHONY: r
 r: run
 
 .PHONY: test
-test: tests.out
+test: build/test
 	@echo "Running the tests ..."
-	./tests.out
+	./build/test
 PHONY: t
 t: test
 
-tests.out: $(TESTS)
-	@echo "Compiling tests into ./tests.out"
-	$(CC) $(CFLAGS) $(TESTS) $(SOURCE) $(UNITY) -o tests.out
+build/test: $(TESTS)
+	@echo "Compiling tests into ./build/tests.out"
+	$(CC) $(CFLAGS) $(TESTS) $(SOURCE) $(UNITY) -o build/test
 
 .PHONY: tree
 tree:
@@ -99,6 +99,7 @@ tr: tree
 cucumber: build bundle
 	@echo "Running cli tests ..."
 	bundle exec cucumber
+	rm -rf tmp
 .PHONY: cu
 cu: cucumber
 
