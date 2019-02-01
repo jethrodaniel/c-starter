@@ -17,12 +17,12 @@ task :default do
   sh 'rake -T', :verbose => false
 end
 
-desc 'Builds and runs the executable'
+desc 'Build and run the executable'
 task :run => %i[build] do
   sh 'build/main'
 end
 
-desc 'Builds the executable'
+desc 'Build the executable'
 task :build => ['build/main', :clean]
 
 # Compile the executable into `build/`
@@ -36,13 +36,13 @@ rule '.o' => '.c' do |task|
   sh "gcc #{BUILD_FLAGS} -c #{task.source} -o #{task.name.sub('src', 'build')}"
 end
 
-desc 'Runs the feature tests'
+desc 'Run the feature tests'
 task :cucumber => %i[build] do
   sh 'cucumber'
   sh 'rake clean', :verbose => false
 end
 
-desc 'Runs the unit tests'
+desc 'Run the unit tests'
 task :test => [:build, 'build/test'] do
   sh 'build/test'
 end
@@ -52,9 +52,14 @@ file 'build/test' do |task|
   sh "gcc #{TEST_FLAGS} #{test_files} #{src_files} #{UNITY} -o build/test"
 end
 
-desc 'Checks for memory leaks'
+desc 'Check for memory leaks'
 task :memcheck => ['build/test', :clean] do
   abort 'You need valgrind to run the memory check!' if %x[which valgrind] == ''
 
   sh "valgrind #{MEM_FLAGS} build/test"
+end
+
+desc "Output the project directory using 'tree'"
+task :tree do
+  sh "tree -a -I 'Unity|.git'"
 end

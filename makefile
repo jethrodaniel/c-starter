@@ -28,18 +28,14 @@ TESTS := $(shell find ./test -name '*.c' -not -path '*Unity*')
 
 .PHONY: usage
 usage:
-	@echo "Usage\n"
-	@echo "  make COMMAND"
-	@echo "\nCOMMANDS\n"
-	@echo "  b|uild      Compiles the source code into an executable"
-	@echo "  c|lean      Removes generated files that are modified during builds"
-	@echo "  cu|cumber   Runs the aruba/cucumber tests"
-	@echo "  p|urge      Alias to 'clean'"
-	@echo "  r|un        Runs 'build', then runs the resulting executable"
-	@echo "  t|est       Runs the tests"
-	@echo "  tr|ee       Outputs the project directory using 'tree'"
-	@echo "  m|emcheck   Checks for memory leaks"
-	@echo
+	@echo "b|uild      Build the executable"
+	@echo "c|lean      Remove any temporary products"
+	@echo "cl|obber    Remove any generated files"
+	@echo "cu|cumber   Run the feature tests"
+	@echo "m|emcheck   Check for memory leaks"
+	@echo "r|un        Run 'build', then run the resulting executable"
+	@echo "t|est       Run the unit tests"
+	@echo "tr|ee       Output the project directory using 'tree'"
 
 .PHONY: memcheck
 memcheck: tests.out
@@ -54,34 +50,35 @@ m: memcheck
 
 .PHONY: build
 build: $(SOURCE)
-	@echo "Compiling source code into ./build/$(PROGRAM_NAME) ..."
 	$(CC) $(CC_FLAGS) $(SOURCE) $(MAIN) -o ./build/$(PROGRAM_NAME)
 .PHONY: b
 b: build
 
 .PHONY: clean
 clean:
-	@echo "Removing all generated files ..."
-	rm -rf build/$(PROGRAM_NAME) *.o *.out *.out.dSYM tmp*
+	rm -rf *.o *.out *.out.dSYM tmp*
 .PHONY: c
 c: clean
 
+.PHONY: clobber
+clobber: clean
+	rm -rf build/
+.PHONY: cl
+cl: clobber
+
 .PHONY: run
 run: clean build
-	@echo "Running the program ..."
 	./build/$(PROGRAM_NAME)
 .PHONY: r
 r: run
 
 .PHONY: test
 test: build/test
-	@echo "Running the tests ..."
 	./build/test
 PHONY: t
 t: test
 
 build/test: $(TESTS)
-	@echo "Compiling tests into ./build/tests.out"
 	$(CC) $(CFLAGS) $(TESTS) $(SOURCE) $(UNITY) -o build/test
 
 .PHONY: tree
@@ -97,7 +94,6 @@ tr: tree
 # --- >8 ---
 .PHONY: cucumber
 cucumber: build bundle
-	@echo "Running cli tests ..."
 	bundle exec cucumber
 	rm -rf tmp
 .PHONY: cu
