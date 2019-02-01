@@ -108,7 +108,7 @@ if ask 'Do you want a Ruby-based build system'; then
   echo '  │       └── env.rb'
   echo '  ├── Gemfile'
   echo '  ├── Gemfile.lock'
-  echo '  ├── Rakefile'
+  echo '  ├── rakefile'
   echo '  └── .ruby-version'
   echo
 else
@@ -116,10 +116,10 @@ else
   echo
   echo "You have a basic GNU Make setup, so here's your makefile:"
   echo
-  echo '  ↳ Makefile'
+  echo '  ↳ makefile'
   echo
-  delete_after_match '# --- >8 ---' "Makefile"
-  delete_matching 'cu|cumber' "Makefile"
+  delete_after_match '# --- >8 ---' "makefile"
+  delete_matching 'cu|cumber' "makefile"
 fi
 echo
 
