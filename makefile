@@ -50,6 +50,7 @@ m: memcheck
 
 .PHONY: build
 build: $(SOURCE)
+  mkdir -p build
 	$(CC) $(CC_FLAGS) $(SOURCE) $(MAIN) -o ./build/$(PROGRAM_NAME)
 .PHONY: b
 b: build
