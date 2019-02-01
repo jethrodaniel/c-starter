@@ -128,10 +128,15 @@ else
 fi
 echo
 
-if ask 'Commit this setup'; then
-  git add .
-  git commit -m 'setup c project with c-starter'
-fi
+echo 'Committing this setup ...'
+echo
+
+git add .
+git commit -m 'setup c project with c-starter'
+
+echo
+echo 'Setting up branch `master` as your main branch ...'
+git checkout -b master
 
 echo
 echo "You're good to go - now off to the code mines!"
