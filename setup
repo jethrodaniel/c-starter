@@ -129,6 +129,13 @@ else
 fi
 echo
 
+rm README.md
+cat <<- EOF > README.md
+# $choice
+
+TODO: add project information
+EOF
+
 at_exit() {
   rm -- "$0"
 
