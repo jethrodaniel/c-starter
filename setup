@@ -134,7 +134,7 @@ echo 'Committing this setup ...'
 git add .
 
 git checkout --orphan master setup
-git commit -m 'setup c project with c-starter'
+git commit -m 'setup project with c-starter'
 
 git branch -D setup
 git remote remove origin
