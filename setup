@@ -129,30 +129,30 @@ else
 fi
 echo
 
-echo 'Committing this setup ...'
-
-git add .
-
-git checkout --orphan master setup
-git commit -m 'setup project with c-starter'
-
-git branch -D setup
-git remote remove origin
-
-echo
-echo "You're good to go - now off to the code mines!"
-echo
-
-if [ "$using_ruby" = true ]; then
-  echo 'To get help, call `rake`'
-else
-  echo 'To get help, call `make`'
-fi
-
-echo
-
 at_exit() {
   rm -- "$0"
+
+  echo 'Committing this setup ...'
+
+  git add .
+
+  git checkout --orphan master setup
+  git commit -m 'setup project with c-starter'
+
+  git branch -D setup
+  git remote remove origin
+
+  echo
+  echo "You're good to go - now off to the code mines!"
+  echo
+
+  if [ "$using_ruby" = true ]; then
+    echo 'To get help, call `rake`'
+  else
+    echo 'To get help, call `make`'
+  fi
+
+  echo
 }
 
 trap at_exit EXIT
