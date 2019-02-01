@@ -147,3 +147,5 @@ if [ "$using_ruby" = true ]; then
 else
   echo 'To get help, call `make`'
 fi
+
+rm -- "$0"
