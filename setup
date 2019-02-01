@@ -103,6 +103,7 @@ if ask 'Do you want a Ruby-based build system'; then
   mv "features/__program__.feature" "features/$choice.feature"
   replace_in_file "__program__" "$choice" "features/$choice.feature"
 
+  rm makefile
   echo
   echo 'Yay, Ruby! 💎 You additionally get the following:'
   echo
