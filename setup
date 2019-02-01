@@ -44,6 +44,8 @@ delete_matching() {
   sed -i "/$1/d" "$PWD/$2"
 }
 
+replace_in_file "__name__" "$(git config user.name)" "LICENSE"
+
 echo 'Setting up a basic c project structure ...'
 echo
 echo 'We start with the following layout:'
@@ -80,7 +82,6 @@ replace_in_file "__program__" "$choice" "src/$choice.h"
 replace_in_file "__program__" "$choice" "src/main.c"
 replace_in_file "__program__" "$choice" "src/main.h"
 replace_in_file "__program__" "$choice" "test/test_$choice.c"
-replace_in_file "__program__" "$choice" "features/$choice.feature"
 
 echo 'Created the following source and test files:'
 echo
@@ -98,11 +99,15 @@ using_ruby=false
 
 if ask 'Do you want a Ruby-based build system'; then
   using_ruby=true
+
+  mv "features/__program__.feature" "features/$choice.feature"
+  replace_in_file "__program__" "$choice" "features/$choice.feature"
+
   echo
   echo 'Yay, Ruby! 💎 You additionally get the following:'
   echo
   echo '  ├── features'
-  echo '  │   ├── main.feature'
+  echo "  │   ├── $choice.feature"
   echo '  │   └── support'
   echo '  │       ├── aruba.rb'
   echo '  │       └── env.rb'
@@ -123,6 +128,12 @@ else
 fi
 echo
 
+if ask 'Commit this setup'; then
+  git add .
+  git commit -m 'setup c project with c-starter'
+fi
+
+echo
 echo "You're good to go - now off to the code mines!"
 echo
 

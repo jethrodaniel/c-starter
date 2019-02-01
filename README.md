@@ -25,7 +25,5 @@ Two kinds of tests are used:
 ## TODO
 
 - [ ] Add more example tests
-- [ ] Actually add the `Rakefile`
-- [ ] Use git username for `LICENSE`
 - [ ] Linters for both C and Ruby
 - [ ] More detailed README
