@@ -117,7 +117,7 @@ if ask 'Do you want a Ruby-based build system'; then
   echo '  └── .ruby-version'
   echo
 else
-  rm -rf features Gemfile Gemfile.lock .ruby-version .rubocop.yml
+  rm -rf features Gemfile Gemfile.lock .ruby-version .rubocop.yml rakefile
   echo
   echo "You have a basic GNU Make setup, so here's your makefile:"
   echo
@@ -128,15 +128,15 @@ else
 fi
 echo
 
+echo
+echo 'Setting up branch `master` as your main branch ...'
+git checkout -b master
+
 echo 'Committing this setup ...'
 echo
 
 git add .
 git commit -m 'setup c project with c-starter'
-
-echo
-echo 'Setting up branch `master` as your main branch ...'
-git checkout -b master
 
 echo
 echo "You're good to go - now off to the code mines!"
@@ -148,4 +148,4 @@ else
   echo 'To get help, call `make`'
 fi
 
-rm -- "$0"
+rm setup
