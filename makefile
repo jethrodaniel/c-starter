@@ -38,11 +38,11 @@ usage:
 	@echo "tr|ee       Output the project directory using 'tree'"
 
 .PHONY: memcheck
-memcheck: tests.out
+memcheck: build/test
 ifeq ( , $(shell which valgrind))
 	$(error Please install valgrind to run this command)
 else
-	@valgrind $(VFLAGS) ./tests.out
+	@valgrind $(VFLAGS) ./build/test
 	@echo "Memory check passed"
 endif
 .PHONY: m
