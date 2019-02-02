@@ -134,6 +134,14 @@ cat <<- EOF > README.md
 # $choice
 
 TODO: add project information
+
+This project was bootstrapped with [c-starter](https://github.com/jethrodaniel/c-starter).
+EOF
+
+cat <<- EOF > init_commit_msg
+inital setup
+
+This project was bootstrapped with [c-starter](https://github.com/jethrodaniel/c-starter).
 EOF
 
 at_exit() {
@@ -142,10 +150,9 @@ at_exit() {
   echo 'Committing this setup ...'
 
   git add .
-
   git checkout --orphan master setup
-  git commit -m 'setup project with c-starter'
-
+  git commit -F init_commit_msg
+  rm init_commit_msg
   git branch -D setup
   git remote remove origin
 
