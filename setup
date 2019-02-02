@@ -150,6 +150,7 @@ at_exit() {
   echo 'Committing this setup ...'
 
   git add .
+  git reset init_commit_msg
   git checkout --orphan master setup
   git commit -F init_commit_msg
   rm init_commit_msg
