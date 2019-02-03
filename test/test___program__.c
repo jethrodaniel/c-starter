@@ -1,5 +1,5 @@
 #include <stddef.h>
-#include "Unity/src/unity.h"
+#include "../vendor/Unity/src/unity.h"
 
 #include "../src/__program__.h"
 

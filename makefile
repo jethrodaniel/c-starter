@@ -23,7 +23,7 @@ VFLAGS += --error-exitcode=1
 
 SOURCE := $(shell find ./src -name '*.c' -not -name 'main.c')
 MAIN := 'src/main.c'
-UNITY := $(shell find ./test/Unity/src -name '*.c')
+UNITY := $(shell find ./vendor/Unity/src -name '*.c')
 TESTS := $(shell find ./test -name '*.c' -not -path '*Unity*')
 
 .PHONY: usage
